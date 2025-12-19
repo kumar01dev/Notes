@@ -1,0 +1,156 @@
+# 1. so yaml is a data serialisation format like XML, JSON, etc for clean, readable structured congiguration.
+# 2. used in deployment/dev tools, docker, CI/CD pipelines, server configurations, kubernatives, etc.
+# 3. bun founder used yaml format instead of json which saved nearly 20-25% tokens 
+
+# 4. filename.yaml or filename.yml for files
+# 5. debuggin is hard in yaml as it doesnot has good error-responses init.
+
+
+
+
+
+# format/indentation: direct data types.
+chai_type: masala_chai
+temprature: hot
+servings: 2
+brewing_time: 5
+
+# for writing comments in yaml ie inline comment by using '#'
+
+
+
+
+chai_reciepe: 
+  milk: almond
+  tea_leaves: darjeling
+
+chai_reciepe_2:
+  milk: oat_milk
+  tea_leaves: chamolina
+#  2spaces is the standard format
+
+
+
+chai_name: green_tea
+description: 'without sugar or any sweetner'
+tag_line: "** dont add sugar at all"
+# use special characters inside double/single quotes only
+
+
+
+
+# multiline data in yaml
+instructions: |
+  boil water
+  add to cups
+  add 2 spoons of tea_leaves
+  then strain the tea_leaves
+# OR 
+instructions_2: >
+  boil water
+  add to cups
+  add 2 spoons of tea_leaves
+  then strain the tea_leaves
+
+
+
+
+cups_per_day: 3
+cups_per_day_2: 4
+cups_per_day_3: 0xFF22AE
+is_hot: true 
+add_milk: no
+#. yes,no are also supported for boolean in yaml
+sweetner: null
+alternative_milk: ~ 
+#. null = ~(tilde) both are same
+
+time_stamp: 2025-10-07
+local_time: 2025-10-07 11:24:09
+
+
+
+
+
+#. collections in yaml: denoted with -
+spices: 
+  - ginger
+  - cloves
+  - garlic
+  - cinnamon
+  - pepper
+  - true
+  - 200
+
+spices_2: [cardamom, ginger, garlic, cloves] ## old format
+steeping_time: [3,2, 9]
+
+# nested list
+chai_categories:
+  - name: vegan_tea
+    varieties: 
+      - masala_tea
+      - ginger_tea
+      - lemon_tea
+  - name: normal_tea
+    varieties:
+      - iced_tea
+      - full_cream_tea
+# OR
+vegan_pasta:
+  ingredients:
+    pasta: whole_wheat
+    sauce: 
+      tomato: true
+      chillies: true
+      garlic: yes
+    spices: 
+      turmeric: yes
+      pepper: yes
+  prepration:
+    method: simmer
+    duration: 20_minutes
+# 23:15 timestamp
+
+
+
+
+
+#. list of dictionaries and dictionaries of list
+chai_menu:
+  - name: lemon_chai
+    price: 40
+    size: regular
+  - name: ginger_chai
+    price: 40
+    size: regular
+
+
+
+
+default_chai_base: &default_base  
+#. "&" is called ampersand, default_base is called anchor, "*" is called asterisk
+  tea: basic_chai
+  water: 200ml
+  extra: ginger
+
+morning_chai: 
+  <<: *default_base  #. this is called alias(getting all data)
+  milk: false
+
+evening_chai: 
+  <<: *default_base
+  milk: cocounut_milk
+
+
+
+
+# explicit data_typing
+zip_code: !!str 266008  #.forces a number into string clearly
+count: !!int "12345"    #.forces a string into number clearly
+unique_values: !!set    #. making a set(ie having unique values)
+  ? uranium
+  ? gallium
+  ? vibranium
+
+#. we can make custom data types like objects,etc
