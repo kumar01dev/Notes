@@ -29,7 +29,7 @@
 // language (or version) and converting it into another, typically at the same level of abstraction. 
 
 // So, TypeScript is only for compile time and finding errors at that time — not
-// for runtime. So we need to convert the TS to JS, then run node filename.js .
+// for runtime. So we need to convert the TS to JS, then run node filename.js.
 
 
 
