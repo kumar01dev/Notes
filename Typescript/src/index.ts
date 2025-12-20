@@ -27,24 +27,28 @@
 //? **(TS => TS compiler => JS) this is called Transpilation. 
 // Transpilation (short for source-to-source compilation) is the process of taking code written in one 
 // language (or version) and converting it into another, typically at the same level of abstraction. 
+// TypeScript is only for compile time to find errors — not for runtime, so we convert TS => JS, then run node filename.js.
 
-// So, TypeScript is only for compile time and finding errors at that time — not
-// for runtime. So we need to convert the TS to JS, then run node filename.js.
-
+//? In TS compiler, TS code -> lexar -> parser -> binder -> checker -> emitter -> .js,.d.ts, .map files
+//? lexar = raw code into tokesn(ie variables, identifiers,equal,etc), parser = tokens into AST(abstract syntax tree), 
+//? binder = makes symbol tables(as :type is used), parent pointer(data flow from end -> <- start node like in tree),
+//? flow nodes(check conditions) these are done for checking, checker = syntax checking for datatypes, IDE have it that is why
+//? it shows the type errors while typing, emitter = removes all type declaration and gives JS code.
 
 
 
 //  RUN A TS FILE:
-//  1.npm i -g typescript =installs TS
+//  1.npm i -g typescript =installs TS (-g = globally installs TS)
+//  2. npm init -y -> npm i -D typescript (filewise) -> npx tsc --init
 //    tsc -v = to know the version
     //  2(a). simple file based ts code compiling:
     //     (now select the folder)
-    //     tsc filename.ts =compilation for errors & makes ts=>js file
+    //     tsc filename.ts = brings compiler to compile for errors & makes ts to js.
     //     node filename.js = run the converted js file(runtime execution)
     //  2(b). Project-Based Setup:
     //     make a src folder, move the index.ts file inside the src folder 
     //     tsc --init(for the main folder not inside src) = makes tsconfig.json file, now uncomment rootDir and outDir in tsconfig.
-    //     tsc = compiles the full project,find errors & make the dist folder
+    //     tsc = brings compiler that compiles the full code,find errors & make the dist folder
     //     node dist/filename.js = runs the code(runtime execution)
 
 
@@ -96,7 +100,7 @@
 
 //? 2. REST parameter- allows a fn to accept multiple arguments in a single array.
 // ie we can pass any number of arguments and it will be stored in an array.
-//? ** REST parameter is with a 'spread operator', should be the last parameter in a fn,for a fn which returns a single array.
+//? ** REST parameter is with a 'spread operator', should be the last parameter for a fn which returns a single array.
 //      function sum(...numbers: number[]) {
 //          return numbers.reduce((total, n) => total + n, 0);
 //      }
